@@ -1,0 +1,8 @@
+--
+-- Criar tabela user.
+--
+CREATE TABLE user (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+login VARCHAR(20) NOT NULL,
+password VARCHAR(20) NOT NULL
+);

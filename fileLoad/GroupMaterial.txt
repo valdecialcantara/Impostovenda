@@ -1,0 +1,5 @@
+id;name;dutyFree
+1;Livros;1
+2;Alimentos;1
+3;Médicos;1
+4;Outros;0
