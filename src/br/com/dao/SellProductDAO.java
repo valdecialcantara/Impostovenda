@@ -62,7 +62,7 @@ public class SellProductDAO {
 
 	public void insert(SellProduct sellProduct){
 		 
-		 String sql = "INSERT INTO sellProduct (input, name, price, duty, quantity, idMaterial) VALUES (?,?,?,?,?,?,?)";
+		 String sql = "INSERT INTO sellProduct (input, name, price, duty, quantity, idMaterial) VALUES (?,?,?,?,?,?)";
 		 
 		 PreparedStatement pstm = null;
 		 
@@ -186,7 +186,10 @@ public class SellProductDAO {
 		sellProduct.setQuantity(material.getStockQuantity());
 		
 		Boolean imp = material.getImported();
+
 		GroupMaterial groupMaterial = new GroupMaterial();
+		GroupMaterialDAO groupDAO = new GroupMaterialDAO();
+		groupMaterial = groupDAO.getGroupMaterial(material.getIdGroup());
 		Boolean duty = groupMaterial.getDutyFree();
 		
 		if (imp) {

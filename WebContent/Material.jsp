@@ -73,7 +73,7 @@ for(Material material : list) {
 				
 			</table>
 			
-			<form method="post" action="SellProduct">
+			<form method="post" action="SellProducts">
 				Selecionar Entrada: <input type="number" name="input" style="border:1px solid blue;" />
             	<input type="submit" value="Vender Produtos" />
             </form>

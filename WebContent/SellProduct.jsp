@@ -61,8 +61,7 @@ for(SellProduct sellProduct : list) {
 			</table>
 			
 			<form method="post" action="SellProduct">
-				Selecionar Entrada: <input type="number" name="imprimir" style="border:1px solid blue;" />
-            	<input type="submit" value="Imprimir" />
+            	<input type="submit" value="Imprimir" name="imprimir" />
             </form>
 			
 	</body>
