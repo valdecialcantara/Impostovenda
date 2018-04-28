@@ -6,8 +6,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -35,17 +33,20 @@ String titulo = "<h3>Company Test</h3>";
 <%  
 // retrieve your list from the request, with casting 
 List<SellProduct> list = (ArrayList<SellProduct>) request.getAttribute("listSellProducts");
+float Taxas = 0;
+float Total = 0;
 
 // print the information about every materials of the list
 for(SellProduct sellProduct : list) {
-		
+	Taxas = Taxas + sellProduct.getDuty();
+	Total = Total + sellProduct.getPrice();
 	out.println("<tr>");
 
 		out.println("<td align=center>");
 		    out.println(sellProduct.getInput());
     	out.println("</td>");
 	    out.println("<td>");
-	    out.println(sellProduct.getQuantity());
+  	        out.println(sellProduct.getQuantity());
 	    out.println("</td>");
 	    out.println("<td align=center>");
 		    out.println(sellProduct.getName());
@@ -56,11 +57,35 @@ for(SellProduct sellProduct : list) {
 
     out.println("</tr>");
 }
+Total = Total + Taxas;
+out.println("<tr>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("<td>");
+out.println("Sales Taxes: " + Taxas);
+out.println("</td>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("</tr>");
+
+out.println("<tr>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("<td>");
+out.println("Total: " + Total);
+out.println("</td>");
+out.println("<td align=center>");
+out.println("</td>");
+out.println("</tr>");
 %>
-				
 			</table>
 			
-			<form method="post" action="SellProduct">
+			
+			<form method="post" action="Imprimir">
             	<input type="submit" value="Imprimir" name="imprimir" />
             </form>
 			

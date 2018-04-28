@@ -107,9 +107,9 @@ public class SellProductDAO {
 		 }
 	}
 
-	public List<SellProduct> getSellProducts(){
+	public List<SellProduct> getSellProducts(int input){
 		 
-		 String sql = "SELECT * FROM sellProduct";
+		 String sql = "SELECT * FROM sellProduct WHERE input = ?";
 		 List<SellProduct> sellProducts = new ArrayList<SellProduct>();
 		 
 		 PreparedStatement pstm = null;
@@ -120,6 +120,7 @@ public class SellProductDAO {
 		 conn = ConnectionFactory.getConnection();
 		 
 		 pstm = conn.prepareStatement(sql);
+		 pstm.setInt(1, input);
 		 
 		 rset = pstm.executeQuery();
 		 
@@ -193,10 +194,10 @@ public class SellProductDAO {
 		Boolean duty = groupMaterial.getDutyFree();
 		
 		if (imp) {
-			imposto10 =  material.getPrice() * 10 / 100;
+			imposto5 =  material.getPrice() * 5 / 100;
 		}
 		if (!duty) {
-			imposto5 =  material.getPrice() * 5 / 100;
+			imposto10 =  material.getPrice() * 10 / 100;
 		}
 		valor = imposto10 + imposto5;
 		sellProduct.setDuty(valor);
