@@ -19,9 +19,7 @@
 	
 	<body>
 <%  
-//CompanyDAO companyDAO = new CompanyDAO();
-//Company company = new Company();
-//company = companyDAO.getCompany();
+
 String titulo = "<h3>Company Test</h3>";
 
 	out.println(titulo);
@@ -43,8 +41,6 @@ String titulo = "<h3>Company Test</h3>";
 List<Material> list = (ArrayList<Material>) request.getAttribute("listMaterials");
 GroupMaterial groupMaterial = new GroupMaterial();
 GroupMaterialDAO groupMaterialDAO = new GroupMaterialDAO();
-//Team team = new Team();
-//TeamDAO teamDAO = new TeamDAO();
 
 // print the information about every materials of the list
 for(Material material : list) {
@@ -79,7 +75,7 @@ for(Material material : list) {
 			
 			<form method="post" action="SellProduct">
 				Selecionar Entrada: <input type="number" name="input" style="border:1px solid blue;" />
-            	<input type="submit" value="VenderProdutos" />
+            	<input type="submit" value="Vender Produtos" />
             </form>
 			
 	</body>

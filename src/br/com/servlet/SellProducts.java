@@ -62,7 +62,7 @@ public class SellProducts extends HttpServlet {
 		//Vender produtos
         listSellProducts = sellDao.getSellProducts();
  		request.setAttribute("listSellProducts", listSellProducts);
-     	request.getRequestDispatcher("SellProducts.jsp").forward(request, response);
+     	request.getRequestDispatcher("SellProduct.jsp").forward(request, response);
     	
 		return;
     		
