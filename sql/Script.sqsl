@@ -32,11 +32,11 @@ stockQuantity INT,
 idMaterial INT
 );
 
-LOAD DATA LOCAL INFILE 'C:\\Valdeci\\testes\\FileLoad\\User.txt' INTO TABLE `user` CHARACTER SET 'utf8' 
+LOAD DATA LOCAL INFILE 'C:\\FileLoad\\User.txt' INTO TABLE `user` CHARACTER SET 'utf8' 
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:\\Valdeci\\testes\\FileLoad\\material.txt' INTO TABLE `Material` CHARACTER SET 'utf8' 
+LOAD DATA LOCAL INFILE 'C:\\FileLoad\\material.txt' INTO TABLE `Material` CHARACTER SET 'utf8' 
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'C:\\Valdeci\\testes\\FileLoad\\groupMaterial.txt' INTO TABLE `GroupMaterial` CHARACTER SET 'utf8' 
+LOAD DATA LOCAL INFILE 'C:\\FileLoad\\groupMaterial.txt' INTO TABLE `GroupMaterial` CHARACTER SET 'utf8' 
 FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES;
