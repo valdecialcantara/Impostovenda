@@ -41,6 +41,7 @@ String titulo = "<h3>Company Test</h3>";
 List<Material> list = (ArrayList<Material>) request.getAttribute("listMaterials");
 GroupMaterial groupMaterial = new GroupMaterial();
 GroupMaterialDAO groupMaterialDAO = new GroupMaterialDAO();
+String mensagem = (String) request.getAttribute("mensagem");
 
 // print the information about every materials of the list
 for(Material material : list) {
@@ -51,16 +52,16 @@ for(Material material : list) {
 		out.println("<td align=center>");
 		    out.println(material.getId());
 	    out.println("</td>");
-	    out.println("<td>");
+	    out.println("<td align=center>");
 		    out.println(material.getInput());
     	out.println("</td>");
 	    out.println("<td>");
 		    out.println(material.getName());
 	    out.println("</td>");
-	    out.println("<td align=center>");
+	    out.println("<td>");
 		    out.println(groupMaterial.getName());
 	    out.println("</td>");
-	    out.println("<td align=center>");
+	    out.println("<td align=right>");
 	    	out.println(material.getPrice());
 	    out.println("</td>");
 	    out.println("<td align=center>");
@@ -77,7 +78,11 @@ for(Material material : list) {
 				Selecionar Entrada: <input type="number" name="input" style="border:1px solid blue;" />
             	<input type="submit" value="Vender Produtos" />
             </form>
-			
+<% if (mensagem != null) {%>
+    <p> <%= mensagem %> </p>
+<% }
+mensagem = null;
+%>				
 	</body>
 
 </html>

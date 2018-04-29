@@ -9,6 +9,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+	<script>
+	function formatar(src, mask)
+	{
+  	var i = src.value.length;
+  	var saida = mask.substring(0,1);
+  	var texto = mask.substring(i)
+	if (texto.substring(0,1) != saida)
+  	{
+                src.value += texto.substring(0,1);
+  	}
+	}
+	</script>	
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Saída de Produtos com Impostos</title>
 	</head>
@@ -45,13 +58,13 @@ for(SellProduct sellProduct : list) {
 		out.println("<td align=center>");
 		    out.println(sellProduct.getInput());
     	out.println("</td>");
-	    out.println("<td>");
+	    out.println("<td align=center>");
   	        out.println(sellProduct.getQuantity());
 	    out.println("</td>");
-	    out.println("<td align=center>");
+	    out.println("<td>");
 		    out.println(sellProduct.getName());
 	    out.println("</td>");
-	    out.println("<td align=center>");
+	    out.println("<td align=right>");
 	    	out.println(sellProduct.getPrice()+sellProduct.getDuty());
 	    out.println("</td>");
 
@@ -87,8 +100,7 @@ out.println("</tr>");
 			
 			<form method="post" action="Imprimir">
             	<input type="submit" value="Imprimir" name="imprimir" />
-            </form>
-			
+            </form>		
 	</body>
 
 </html>

@@ -29,7 +29,8 @@ public class SellProducts extends HttpServlet {
 	List<Material> materials = new ArrayList<Material>();
 	List<GroupMaterial> groupMaterials = new ArrayList<GroupMaterial>();
 	Integer inputSel = 0; 
-
+	boolean valid = true;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -56,25 +57,36 @@ public class SellProducts extends HttpServlet {
     	groupMaterials = groupMaterialDAO.getGroupMaterials();
     	
     	//Calcular impostos
-		Calculate(materials, input);
-		materials = dao.getMaterials();
-		
-		//Vender produtos
-        listSellProducts = sellDao.getSellProducts(input);
+    	valid = Calculate(materials, input);
 
-        
- 		request.setAttribute("listSellProducts", listSellProducts);
-     	request.getRequestDispatcher("SellProduct.jsp").forward(request, response);
-    	
-		return;
+        if (valid) {
+    		//Vender produtos
+            listSellProducts = sellDao.getSellProducts(input);
+
+        	request.setAttribute("listSellProducts", listSellProducts);
+         	request.getRequestDispatcher("SellProduct.jsp").forward(request, response);
+    		return;
+        }
+		else {
+/*            List<Material> listMaterials = new ArrayList<Material>();
+        	MaterialDAO empDao = new MaterialDAO(); //cria uma instancia do DAO Material
+        	listMaterials = empDao.getMaterials();
+*/
+    		materials = dao.getMaterials();
+
+			request.setAttribute("mensagem", "Saldo de produto insuficiente para venda!");
+			request.setAttribute("listMaterials", materials);
+        	request.getRequestDispatcher("Material.jsp").forward(request, response);			
+			return;
+		}
     		
     }
     
     //Calcula os impostos da venda
-    private  void Calculate(List<Material> materials, int input){
+    private boolean Calculate(List<Material> materials, int input){
     	int inputSel = 0;
     	int qtde = 0;
-    	
+    	boolean valid = true;
     	for (Material material : materials) {
     		inputSel = material.getInput();
     		
@@ -88,9 +100,13 @@ public class SellProducts extends HttpServlet {
             		matDao.update(material, qtde);
             		
             	}
+            	else {
+            		valid = false;
+            	}
             	
             }
  		}
+    	return valid;
     }
 
 }
