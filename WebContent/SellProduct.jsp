@@ -65,7 +65,7 @@ for(SellProduct sellProduct : list) {
 		    out.println(sellProduct.getName());
 	    out.println("</td>");
 	    out.println("<td align=right>");
-	    	out.println(sellProduct.getPrice()+sellProduct.getDuty());
+	    	out.println(String.format("%.2f", sellProduct.getPrice()+sellProduct.getDuty()));
 	    out.println("</td>");
 
     out.println("</tr>");
@@ -77,7 +77,7 @@ out.println("</td>");
 out.println("<td align=center>");
 out.println("</td>");
 out.println("<td>");
-out.println("Sales Taxes: " + Taxas);
+out.println("Sales Taxes: " + String.format("%.2f", Taxas));
 out.println("</td>");
 out.println("<td align=center>");
 out.println("</td>");
@@ -89,7 +89,7 @@ out.println("</td>");
 out.println("<td align=center>");
 out.println("</td>");
 out.println("<td>");
-out.println("Total: " + Total);
+out.println("Total: " + String.format("%.2f", Total));
 out.println("</td>");
 out.println("<td align=center>");
 out.println("</td>");

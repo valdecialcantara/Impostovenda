@@ -62,9 +62,9 @@ public class MaterialDAO {
 		 }
 	}
 
-	public List<Material> getMaterials(){
+	public List<Material> getMaterials(int input){
 		 
-		 String sql = "SELECT * FROM material";
+		 String sql = "SELECT * FROM material ";
 		 List<Material> materials = new ArrayList<Material>();
 		 
 		 PreparedStatement pstm = null;
@@ -74,7 +74,13 @@ public class MaterialDAO {
 		 try {
 		 conn = ConnectionFactory.getConnection();
 		 
-		 pstm = conn.prepareStatement(sql);
+		 if (input > 0) {
+			 sql = sql + " WHERE input = ?";
+			 pstm = conn.prepareStatement(sql);
+			 pstm.setInt(1, input);
+		 } else {
+			 pstm = conn.prepareStatement(sql);	 
+		 }
 		 
 		 rset = pstm.executeQuery();
 		 

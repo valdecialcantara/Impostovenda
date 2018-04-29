@@ -30,6 +30,7 @@ public class SellProducts extends HttpServlet {
 	List<GroupMaterial> groupMaterials = new ArrayList<GroupMaterial>();
 	Integer inputSel = 0; 
 	boolean valid = true;
+	String mensagem = "";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,7 +52,7 @@ public class SellProducts extends HttpServlet {
     	SellProductDAO sellDao = new SellProductDAO(); //cria uma instancia do DAO SellProduct
  
     	MaterialDAO dao = new MaterialDAO(); //cria uma instancia do DAO produtos
-    	materials = dao.getMaterials();
+    	materials = dao.getMaterials(input);
     	
     	GroupMaterialDAO groupMaterialDAO = new GroupMaterialDAO();  //cria uma instancia do DAO do grupo de produtos
     	groupMaterials = groupMaterialDAO.getGroupMaterials();
@@ -68,13 +69,10 @@ public class SellProducts extends HttpServlet {
     		return;
         }
 		else {
-/*            List<Material> listMaterials = new ArrayList<Material>();
-        	MaterialDAO empDao = new MaterialDAO(); //cria uma instancia do DAO Material
-        	listMaterials = empDao.getMaterials();
-*/
-    		materials = dao.getMaterials();
 
-			request.setAttribute("mensagem", "Saldo de produto insuficiente para venda!");
+    		materials = dao.getMaterials(0);
+
+			request.setAttribute("mensagem", mensagem);
 			request.setAttribute("listMaterials", materials);
         	request.getRequestDispatcher("Material.jsp").forward(request, response);			
 			return;
@@ -87,10 +85,13 @@ public class SellProducts extends HttpServlet {
     	int inputSel = 0;
     	int qtde = 0;
     	boolean valid = true;
+    	boolean existe = false;
+    	
     	for (Material material : materials) {
     		inputSel = material.getInput();
     		
             if (input == inputSel) {
+            	existe = true;
             	qtde = material.getStockQuantity();
             	if (qtde > 0) {
             		SellProductDAO dao = new SellProductDAO();
@@ -98,14 +99,19 @@ public class SellProducts extends HttpServlet {
 
             		MaterialDAO matDao = new MaterialDAO();
             		matDao.update(material, qtde);
-            		
+
             	}
             	else {
             		valid = false;
+            		mensagem = "Saldo de produto insuficiente para venda!";
             	}
             	
             }
  		}
+    	if (!existe) {
+    		valid = false;
+    		mensagem = "O parâmetro da cesta de entrada é inválido!";
+    	}
     	return valid;
     }
 

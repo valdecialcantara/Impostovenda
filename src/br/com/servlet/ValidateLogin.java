@@ -40,7 +40,7 @@ public class ValidateLogin extends HttpServlet {
             List<Material> listMaterials = new ArrayList<Material>();
         	
         	MaterialDAO empDao = new MaterialDAO(); //cria uma instancia do DAO Material
-        	listMaterials = empDao.getMaterials();
+        	listMaterials = empDao.getMaterials(0);
         	
 			request.setAttribute("listMaterials", listMaterials);
         	request.getRequestDispatcher("Material.jsp").forward(request, response);
